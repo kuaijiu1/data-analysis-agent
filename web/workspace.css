@@ -1,0 +1,42 @@
+.dataset-actions, .board-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.danger-btn { border: 1px solid #efcfcc; border-radius: 8px; padding: 9px 12px; color: #a3403d; background: #fff7f6; cursor: pointer; font: inherit; font-size: 12px; }
+.danger-btn:disabled { opacity: .5; cursor: not-allowed; }
+.dataset-row { display: flex; align-items: center; gap: 5px; margin-bottom: 5px; }
+.dataset-row .dataset-item { flex: 1; min-width: 0; margin-bottom: 0; }
+.dataset-delete { flex: none; border: 1px solid #805050; background: #352b38; color: #ffc1ba; border-radius: 7px; padding: 8px 7px; font: inherit; font-size: 11px; cursor: pointer; }
+.dataset-delete:hover, .dataset-delete:focus-visible { background: #59333c; border-color: #df8b81; }
+.dataset-delete:disabled { opacity: .45; cursor: not-allowed; }
+.delete-dialog { width: min(460px, calc(100vw - 32px)); border: 1px solid #dce5ef; border-radius: 16px; padding: 26px; color: #26394d; box-shadow: 0 20px 80px #10223844; }
+.delete-dialog::backdrop { background: #10223888; }
+.delete-dialog h2 { margin: 0 0 14px; font-size: 20px; }
+.delete-dialog p { font-size: 13px; line-height: 1.7; }
+.delete-file-name { font-weight: 700; overflow-wrap: anywhere; }
+.delete-dialog-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; }
+.delete-confirm { border: 0; border-radius: 9px; background: #b4413c; color: #fff; padding: 10px 15px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.delete-confirm:disabled { opacity: .5; cursor: wait; }
+.delete-dialog-error { color: #aa403b; }
+#pauseUploadBtn { width: 100%; margin-top: 9px; }
+.followup-context { display: flex; gap: 15px; justify-content: space-between; align-items: center; border-radius: 9px; background: #eef5fd; color: #3c658c; padding: 10px 12px; margin-bottom: 17px; font-size: 12px; }
+.history-panel { margin-top: 20px; }
+.history-panel h3 { margin: 0; }
+.history-entry { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; width: 100%; border: 1px solid #e2eaf3; background: #fbfcfe; text-align: left; border-radius: 8px; padding: 12px; margin-bottom: 8px; cursor: pointer; font: inherit; }
+.history-entry:hover { border-color: #80b2e0; background: #f0f7ff; }
+.history-entry strong { display: block; font-size: 13px; font-weight: 600; color: #314d68; }
+.history-entry small { display: block; font-size: 11px; color: #8a9bad; margin-top: 6px; }
+.history-tag { white-space: nowrap; font-size: 10px; color: #4d83b6; background: #eaf3fd; padding: 4px 7px; border-radius: 6px; }
+.dashboard-editor label { display: block; font-size: 12px; color: #4d637b; margin: 10px 0 6px; }
+.dashboard-editor input:not([type=checkbox]), .dashboard-editor select, .dashboard-editor textarea { width: 100%; border: 1px solid #cfddeb; border-radius: 8px; background: #fbfcfe; color: #2e465e; font: inherit; font-size: 12px; padding: 10px; height: auto; }
+.dashboard-editor textarea { resize: vertical; }
+.board-edit-row { border: 1px solid #dfe9f4; border-radius: 10px; padding: 15px; margin-top: 12px; background: #fcfdff; }
+.board-edit-top { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+.board-edit-top .editor-title { flex: 1; min-width: 170px; }
+.board-edit-top .editor-kind { width: 115px; }
+.board-row-actions { display: flex; gap: 5px; }
+.board-row-actions button { border: 0; padding: 7px; border-radius: 6px; color: #57748f; background: #edf3f9; font-size: 11px; cursor: pointer; }
+.dashboard-editor .rebuild-label { display: flex; align-items: center; gap: 7px; margin: 14px 0 0; }
+.query-grid { display: grid; grid-template-columns: repeat(3, minmax(120px, 1fr)); gap: 0 12px; margin-top: 8px; }
+.query-filter { display: grid; grid-template-columns: 1fr 100px 1fr auto; gap: 8px; margin-top: 8px; align-items: center; }
+.query-filter button { border: 0; background: #fff0ee; color: #a85b52; border-radius: 6px; padding: 8px; cursor: pointer; }
+.query-filters { margin-top: 12px; padding-top: 10px; border-top: 1px dashed #dfe8f1; }
+@media(max-width:650px) { .dataset-head { flex-wrap: wrap; } .query-grid { grid-template-columns: 1fr 1fr; } .query-filter { grid-template-columns: 1fr 1fr; } .followup-context { flex-wrap: wrap; } }
+@media print { .quality-panel, .dictionary-panel, .history-panel, .dashboard-editor, #editDashboardBtn { display: none !important; } }

@@ -1,0 +1,23 @@
+.dashboard-section{margin:18px 0 34px}
+.dashboard-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:18px}
+.dashboard-heading h2{margin:5px 0 6px;font-size:23px}
+.dashboard-heading p{margin:0;color:#718398;font-size:13px;line-height:1.6}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:16px}
+.kpi-card,.chart-card{background:#fff;border:1px solid #e5ebf2;border-radius:14px;box-shadow:0 4px 18px rgba(31,62,93,.035)}
+.kpi-card{padding:18px 20px;min-width:0}
+.kpi-card>span{display:block;color:#718398;font-size:12px;margin-bottom:8px}
+.kpi-card>strong{display:block;font-size:26px;line-height:1.2;color:#173b63;word-break:break-word}
+.kpi-card details{margin-top:12px}
+.kpi-card summary,.chart-card summary{font-size:11px;color:#3978ae;cursor:pointer}
+.kpi-card pre,.chart-card pre{font-size:11px;white-space:pre-wrap;word-break:break-word;background:#f3f7fb;padding:10px;border-radius:7px;color:#486077}
+.dashboard-insight{background:#eaf4ff;border-left:4px solid #3287d5;border-radius:9px;padding:15px 18px;color:#254c71;font-size:13px;line-height:1.8;white-space:pre-wrap;margin-bottom:16px}
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:16px}
+.chart-card{padding:18px;min-width:0}
+.chart-card h3{font-size:15px;margin:0 0 13px}
+.chart-plot{overflow-x:auto}
+.chart-plot svg{display:block;min-width:620px;width:100%;height:auto}
+.chart-card .hint{margin:5px 0 13px}
+.dashboard-warnings{margin-top:15px;padding:12px 14px;border-radius:8px;background:#fff4da;color:#875d1c;font-size:12px;white-space:pre-wrap}
+@media(max-width:850px){.dashboard-heading{display:block}.dashboard-heading button{margin-top:14px}.chart-grid{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.kpi-grid{grid-template-columns:1fr}}
+@media print{.sidebar,.topbar,.ask-panel,.question-title,#answerSection,#notice,#printDashboardBtn{display:none!important}.main{padding:0;max-width:none}.dataset-head,.table-cards,.section-title{display:none!important}.dashboard-section{display:block!important}.chart-grid{grid-template-columns:1fr 1fr}.chart-card,.kpi-card{break-inside:avoid}.chart-plot svg{min-width:0}}

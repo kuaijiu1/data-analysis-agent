@@ -1,0 +1,31 @@
+{
+  "measured_at": "2026-10-20 20:27:42",
+  "python": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+  "method": "Actual localhost HTTP requests, 8 MiB chunks, fresh Uvicorn per format, no LLM calls. CSV has repeated synthetic 512-byte rows and is highly compressible. XLSX is a representative-sized fixture, not a 1 GiB XLSX test.",
+  "results": [
+    {
+      "format": ".csv",
+      "file_bytes": 1073741824,
+      "rows": 2097152,
+      "upload_seconds": 6.237,
+      "import_and_profile_seconds": 11.58,
+      "aggregate_query_seconds": 0.036,
+      "peak_server_working_set_bytes": 1419943936,
+      "persistent_storage_bytes": 1718371689,
+      "profile_status": "ready",
+      "row_count_and_sum_verified": true
+    },
+    {
+      "format": ".xlsx",
+      "file_bytes": 5633418,
+      "rows": 100000,
+      "upload_seconds": 0.062,
+      "import_and_profile_seconds": 10.091,
+      "aggregate_query_seconds": 0.027,
+      "peak_server_working_set_bytes": 146829312,
+      "persistent_storage_bytes": 9580787,
+      "profile_status": "ready",
+      "row_count_and_sum_verified": true
+    }
+  ]
+}

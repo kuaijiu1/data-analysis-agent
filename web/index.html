@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>本地数据分析 Agent</title>
+  <link rel="stylesheet" href="/style.css?v=2">
+  <link rel="stylesheet" href="/dashboard.css?v=2">
+  <link rel="stylesheet" href="/auth.css?v=3">
+  <link rel="stylesheet" href="/quality.css?v=1">
+  <link rel="stylesheet" href="/workspace.css?v=2">
+</head>
+<body>
+  <div id="authScreen" class="auth-screen" hidden>
+    <div class="auth-shell">
+      <div class="auth-story">
+        <div class="auth-brand"><span class="auth-brand-mark">◈</span><span>数据分析 <strong>Agent</strong></span></div>
+        <div class="auth-story-main">
+          <div class="auth-eyebrow"><span></span> LOCAL DATA WORKSPACE</div>
+          <h1>让复杂数据，<br><em>变得一目了然。</em></h1>
+          <p>上传表格，用自然语言提问，把关键指标与趋势整理成清晰的看板。</p>
+          <div class="auth-preview" aria-hidden="true">
+            <div class="auth-preview-head"><span>看板示意</span><span class="auth-preview-dots"><i></i><i></i><i></i></span></div>
+            <div class="auth-preview-metrics"><div><small>记录总数</small><strong>24,860</strong><span>↗ 12.8%</span></div><div><small>本月趋势</small><strong>稳步增长</strong><span>实时分析</span></div></div>
+            <div class="auth-preview-chart"><span style="height:32%"></span><span style="height:48%"></span><span style="height:41%"></span><span style="height:64%"></span><span style="height:58%"></span><span style="height:77%"></span><span style="height:70%"></span><span style="height:91%"></span><span style="height:82%"></span><span style="height:100%"></span></div>
+          </div>
+        </div>
+        <div class="auth-story-foot"><span>CSV & Excel</span><span>·</span><span>自然语言分析</span><span>·</span><span>本机运行</span></div>
+      </div>
+      <div class="auth-panel">
+        <div class="auth-panel-top"><span class="auth-panel-label">欢迎使用</span><span class="auth-local-pill"><span></span> 本机工作台</span></div>
+        <form id="authForm" class="auth-card">
+          <div id="authFormEyebrow" class="auth-form-eyebrow">WELCOME BACK</div>
+          <h2 id="authTitle">欢迎回来</h2>
+          <p id="authHint">用邮箱和密码登录，继续分析你的数据。</p>
+          <label for="authEmail">邮箱地址</label>
+          <input id="authEmail" name="email" type="email" autocomplete="email" maxlength="254" placeholder="name@example.com" required>
+          <div id="legacyWrap" hidden><label for="legacyUsername">旧账号用户名</label><input id="legacyUsername" type="text" autocomplete="username" maxlength="40" placeholder="请输入旧用户名"></div>
+          <label for="authPassword">密码</label>
+          <input id="authPassword" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" placeholder="请输入密码" required>
+          <div id="confirmWrap" hidden><label for="authConfirm">确认密码</label><input id="authConfirm" type="password" autocomplete="new-password" minlength="8" maxlength="128" placeholder="再次输入密码"></div>
+          <p id="authError" class="auth-error" role="alert" hidden></p>
+          <button id="authSubmit" class="auth-submit" type="submit">登录</button>
+          <div class="auth-form-divider"><span>账号入口</span></div>
+          <button id="authSwitch" class="auth-link" type="button">没有账号？邮箱注册</button>
+          <button id="legacySwitch" class="auth-link auth-legacy-link" type="button" hidden>已有旧账号？绑定邮箱</button>
+        </form>
+        <p class="auth-panel-foot">你的文件保存在这台电脑的项目目录中</p>
+      </div>
+    </div>
+  </div>
+  <div id="appScreen" class="layout" hidden>
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon">◈</span><div><strong>数据分析 Agent</strong><small>仅在本机运行</small></div></div>
+      <div class="side-section">
+        <h2>导入数据</h2>
+        <label class="file-picker" for="fileInput"><span>＋</span><strong>选择 Excel 或 CSV</strong><small>单文件最大 1GB</small></label>
+        <input id="fileInput" type="file" accept=".xlsx,.csv" hidden>
+        <div id="fileName" class="file-name">尚未选择文件</div>
+        <label class="field-label" for="encoding">CSV 编码</label>
+        <select id="encoding"><option value="auto">自动识别</option><option value="utf-8">UTF-8</option><option value="utf-8-sig">UTF-8 BOM</option><option value="gb18030">GB18030 / GBK</option><option value="utf-16">UTF-16</option></select>
+        <button id="uploadBtn" class="primary" type="button">上传并导入</button>
+        <button id="pauseUploadBtn" class="secondary compact" type="button" hidden>暂停上传</button>
+        <div id="uploadProgress" class="progress-wrap" hidden><div class="progress-track"><div id="progressBar"></div></div><small id="progressText"></small></div>
+      </div>
+      <div class="side-section datasets-heading"><h2>数据集</h2><button id="refreshBtn" class="icon-btn" title="刷新" type="button">↻</button></div>
+      <div id="datasetList" class="dataset-list"><p class="muted">还没有数据集</p></div>
+      <div class="sidebar-foot">数据保存在本机项目的 <code>data</code> 目录</div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><span class="eyebrow">LOCAL WORKSPACE</span><h1>让数据回答问题</h1><p>上传表格，检查字段，再用自然语言提问。</p></div><div class="account-tools"><span id="modelBadge" class="badge">检查模型配置中</span><span id="accountName"></span><button id="logoutBtn" class="secondary compact" type="button">退出登录</button></div></header>
+      <div id="notice" class="notice" hidden></div>
+      <section id="emptyState" class="empty-state"><div class="empty-icon">▦</div><h2>先导入一份数据</h2><p>支持 CSV 和 XLSX。数据导入完成后可查看预览并开始分析。</p></section>
+      <div id="workspace" hidden>
+        <section class="panel dataset-head"><div><span class="eyebrow">当前数据集</span><h2 id="datasetTitle"></h2><p id="datasetMeta"></p></div><div class="dataset-actions"><span id="datasetStatus" class="status-pill"></span><button id="cancelImportBtn" class="secondary compact" type="button" hidden>取消导入</button><button id="deleteDatasetBtn" class="danger-btn" type="button">删除数据集</button></div></section>
+        <section id="sheetSection" class="panel" hidden><h3>选择要分析的工作表</h3><p class="muted">支持表格、段落、说明与嵌入图片文字。请勾选所有需要读取的工作表；图片会在本机识别。</p><div id="sheetList" class="sheet-list"></div><button id="importBtn" class="primary compact" type="button">开始导入所选工作表</button></section>
+        <section id="waitingSection" class="panel" hidden><div class="spinner"></div><div><h3 id="waitingTitle">正在处理</h3><p id="waitingText" class="muted"></p></div></section>
+        <section id="errorSection" class="panel error-panel" hidden><h3>处理失败</h3><p id="errorText"></p><button id="retryBtn" class="secondary compact" type="button">重试导入</button></section>
+        <section id="readySection" hidden>
+          <section class="panel" id="excelReadSection" hidden><h3>文件读取情况</h3><p id="excelReadSummary" class="muted"></p><div id="excelReadWarnings"></div><button id="reprocessExcelBtn" class="secondary compact" type="button">重新读取文件（保留原数据集）</button></section>
+          <div class="section-title"><div><span class="eyebrow">DATA OVERVIEW</span><h2>数据概览</h2></div></div>
+          <div id="tableCards" class="table-cards"></div>
+          <section class="panel quality-panel">
+            <div class="quality-heading"><div><span class="eyebrow">DATA QUALITY</span><h2>数据质量概览</h2></div><button id="profileBtn" class="secondary compact" type="button">生成概览</button></div>
+            <p id="profileStatus" class="muted" role="status"></p>
+            <div id="qualitySummary" class="quality-summary"></div>
+            <div id="qualityTables"></div>
+          </section>
+          <form id="dictionaryForm" class="panel dictionary-panel">
+            <div class="quality-heading"><div><span class="eyebrow">BUSINESS DEFINITIONS</span><h2>字段含义与指标口径</h2></div><span id="dictionaryStatus" class="definition-status" role="status">尚未填写</span></div>
+            <p class="muted">告诉 Agent 每列代表什么、指标怎么算。保存后会用于后续提问和看板生成。</p>
+            <label class="definition-label" for="dictionaryDescription">这份数据描述什么？</label>
+            <textarea id="dictionaryDescription" rows="2" maxlength="2000" placeholder="例如：各门店每日经营数据，金额单位为元；销售额不包含退款。"></textarea>
+            <div id="fieldDefinitions"></div>
+            <div class="metrics-heading"><div><h3>业务指标</h3><p class="hint">例如：客单价 = 实付金额总和 ÷ 支付订单数；说明是否排除退款、按什么日期统计。</p></div><button id="addMetricBtn" class="secondary compact" type="button">＋ 添加指标</button></div>
+            <div id="metricDefinitions"></div>
+            <div class="definition-actions"><p class="hint">修改口径后，已有看板需要重新生成。</p><button id="saveDictionaryBtn" class="primary compact" type="submit" disabled>保存说明与口径</button></div>
+          </form>
+          <div class="section-title question-title"><div><span class="eyebrow">DASHBOARD</span><h2>数据看板</h2></div></div>
+          <section class="panel ask-panel"><label for="dashboardFocus">一键生成多图表看板</label><div class="ask-row"><input id="dashboardFocus" type="text" placeholder="可选：重点关注营业额、订单量和 ROI" maxlength="300"><button id="dashboardBtn" class="primary compact" type="button">生成数据看板</button></div><p class="hint">自动选择关键指标和图表；生成后会保存在本机，刷新页面仍可查看。</p></section>
+          <section id="dashboardSection" class="dashboard-section" hidden><div class="dashboard-heading"><div><span class="eyebrow">DASHBOARD RESULT</span><h2 id="dashboardTitle"></h2><p id="dashboardDescription"></p></div><div class="board-actions"><button id="editDashboardBtn" class="secondary compact" type="button">编辑看板</button><button id="printDashboardBtn" class="secondary compact" type="button">打印或保存 PDF</button></div></div><div id="kpiGrid" class="kpi-grid"></div><div id="dashboardInsight" class="dashboard-insight" hidden></div><div id="chartGrid" class="chart-grid"></div><div id="dashboardWarnings" class="dashboard-warnings" hidden></div></section>
+          <form id="dashboardEditor" class="panel dashboard-editor" hidden>
+            <div class="quality-heading"><div><span class="eyebrow">EDIT DASHBOARD</span><h2>编辑看板</h2></div><button id="cancelBoardEditBtn" class="secondary compact" type="button">取消编辑</button></div>
+            <p class="muted">可修改标题、图形和顺序；勾选“重新选择统计方式”可调整字段、聚合与筛选。保存时在本机重新计算。</p>
+            <label for="boardTitleInput">看板标题</label><input id="boardTitleInput" maxlength="80" required>
+            <label for="boardDescriptionInput">看板说明</label><textarea id="boardDescriptionInput" maxlength="300" rows="2"></textarea>
+            <div class="metrics-heading"><h3>指标卡</h3><button id="addBoardKPIBtn" class="secondary compact" type="button">＋ 添加指标卡</button></div><div id="boardKPIEditors"></div>
+            <div class="metrics-heading"><h3>图表</h3><button id="addBoardChartBtn" class="secondary compact" type="button">＋ 添加图表</button></div><div id="boardChartEditors"></div>
+            <div class="definition-actions"><span class="hint">筛选后没有数据时不会覆盖已有看板。最多 12 个指标卡和 12 张图。</span><button id="saveBoardBtn" class="primary compact" type="submit">保存看板</button></div>
+          </form>
+          <div class="section-title question-title"><div><span class="eyebrow">ASK YOUR DATA</span><h2>向数据提问</h2></div></div>
+          <section class="panel ask-panel"><div id="followupContext" class="followup-context" hidden><span id="followupText"></span><button id="newQuestionBtn" class="secondary compact" type="button">开始新问题</button></div><label for="questionInput">你想了解什么？</label><div class="ask-row"><input id="questionInput" type="text" placeholder="例如：按月份统计销售额，并找出最高的月份" maxlength="2000"><button id="askBtn" class="primary compact" type="button">开始分析</button></div><p class="hint">分析会自动保存；可从历史记录继续追问。结果中可查看使用的 SQL。</p></section>
+          <section class="panel history-panel"><div class="quality-heading"><h3>提问历史</h3><button id="refreshHistoryBtn" class="secondary compact" type="button">刷新历史</button></div><div id="historyList"></div><button id="moreHistoryBtn" class="secondary compact" type="button" hidden>加载更多</button></section>
+          <section id="answerSection" class="panel answer-panel" hidden><div class="answer-header"><div><span class="eyebrow">ANALYSIS RESULT</span><h3>分析结果</h3></div><button id="downloadBtn" class="secondary compact" type="button">下载结果 CSV</button></div><p id="answerText" class="answer-text"></p><div id="chartBox" hidden></div><div id="resultTable"></div><details><summary>查看计算 SQL</summary><pre id="sqlText"></pre></details></section>
+        </section>
+      </div>
+    </main>
+  </div>
+  <dialog id="deleteDialog" class="delete-dialog" aria-labelledby="deleteDialogTitle" aria-describedby="deleteDialogDescription">
+    <h2 id="deleteDialogTitle">删除文件</h2>
+    <p id="deleteFileName" class="delete-file-name"></p>
+    <p id="deleteDialogDescription">将永久删除此数据集的原文件、分析数据、看板和提问历史，无法恢复。其他数据集不受影响。</p>
+    <p id="deleteDialogStatus" role="status"></p>
+    <p id="deleteDialogError" class="delete-dialog-error" role="alert" hidden></p>
+    <div class="delete-dialog-actions"><button id="cancelDeleteBtn" class="secondary compact" type="button">取消</button><button id="confirmDeleteBtn" class="delete-confirm" type="button">确认删除</button></div>
+  </dialog>
+  <script src="/workspace.js?v=3"></script>
+  <script src="/quality.js?v=1"></script>
+  <script src="/app.js?v=11"></script>
+</body>
+</html>

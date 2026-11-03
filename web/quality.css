@@ -1,0 +1,35 @@
+.quality-panel, .dictionary-panel { margin-top: 22px; }
+.quality-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 13px; }
+.quality-heading h2 { margin: 4px 0 0; font-size: 20px; }
+.quality-summary { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.quality-stat { min-width: 130px; padding: 12px 17px; border: 1px solid #e4edf5; border-radius: 10px; background: #f6f9fd; }
+.quality-stat span { display: block; font-size: 12px; color: #73859b; margin-bottom: 5px; }
+.quality-stat strong { font-size: 22px; color: #274d75; }
+.quality-table { margin-top: 17px; }
+.quality-table h3 { font-size: 14px; }
+.quality-table .table-scroll { max-height: 350px; border: 1px solid #e4ebf3; border-radius: 8px; }
+.quality-table .table-scroll th { position: sticky; top: 0; }
+.quality-table .hint { margin-bottom: 10px; }
+.quality-error { color: #a34440 !important; }
+.definition-status { font-size: 12px; color: #6d8299; }
+.definition-status.dirty { color: #a16b18; }
+.definition-label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.dictionary-panel textarea, .dictionary-panel input { width: 100%; border: 1px solid #d4e0ed; border-radius: 8px; background: #fbfcfe; padding: 10px 12px; color: #2b4057; font: inherit; font-size: 13px; resize: vertical; }
+.dictionary-panel textarea:focus, .dictionary-panel input:focus { outline: 2px solid #bad8f4; border-color: #74a8d8; }
+.field-definitions { margin-top: 18px; border: 1px solid #e5ecf4; border-radius: 10px; padding: 13px 15px; }
+.field-definitions summary { cursor: pointer; font-size: 13px; font-weight: 700; color: #395b7e; }
+.field-definition { display: grid; grid-template-columns: minmax(130px, 1fr) minmax(180px, 3fr); gap: 15px; align-items: center; margin-top: 13px; }
+.field-definition label { word-break: break-all; font-size: 12px; color: #344a61; }
+.field-definition small { display: block; margin-top: 3px; font-size: 10px; color: #8b9aad; }
+.metrics-heading { display: flex; gap: 15px; align-items: center; justify-content: space-between; margin-top: 25px; margin-bottom: 13px; }
+.metrics-heading h3 { font-size: 15px; margin: 0; }
+.metric-definition { display: grid; grid-template-columns: minmax(120px, 1fr) minmax(180px, 3fr) auto; gap: 10px; margin-bottom: 10px; align-items: start; }
+.metric-remove { border: 0; background: #fff0ef; color: #a34e49; cursor: pointer; border-radius: 7px; padding: 10px; font-size: 12px; }
+.definition-actions { display: flex; gap: 16px; justify-content: space-between; align-items: center; border-top: 1px solid #e7edf4; padding-top: 17px; margin-top: 19px; }
+.definition-actions .hint { margin: 0; }
+@media(max-width:650px) {
+  .quality-heading, .metrics-heading, .definition-actions { flex-wrap: wrap; }
+  .field-definition, .metric-definition { grid-template-columns: 1fr; gap: 7px; }
+  .metric-remove { justify-self: end; }
+  .quality-stat { min-width: 100px; flex: 1; }
+}
