@@ -160,7 +160,7 @@ def start():
         metrics_port = probe.getsockname()[1]
     with (DATA / "public-out.log").open("wb") as output, ERROR_LOG.open("wb") as error:
         child = subprocess.Popen(
-            [str(BINARY), "tunnel", "--no-autoupdate", "--protocol", "http2", "--metrics",
+            [str(BINARY), "tunnel", "--no-autoupdate", "--protocol", "auto", "--metrics",
              f"127.0.0.1:{metrics_port}", "--url", "http://127.0.0.1:8000"],
             cwd=ROOT, stdin=subprocess.DEVNULL, stdout=output, stderr=error,
             creationflags=subprocess.CREATE_NO_WINDOW,
